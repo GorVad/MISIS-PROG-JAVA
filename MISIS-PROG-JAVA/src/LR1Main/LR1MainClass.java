@@ -1,9 +1,41 @@
 package LR1Main;
 
+import java.io.*;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
+
 public class LR1MainClass
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws IOException
     {
-        System.out.println("Hello World!");
+        try
+        {
+            File pdfFile = new File("D:\\IntelliJ\\MISIS-PROG-JAVA\\ExternalFiles\\ExLR1\\LR1_PDFText.pdf");
+            File txtFile = new File("D:\\IntelliJ\\MISIS-PROG-JAVA\\ExternalFiles\\ExLR1\\LR1_TxtToWrite.txt");
+            PDFTextStripper pdfTextStripper = new PDFTextStripper();
+
+            //Чтение файла
+            PDDocument pdfDocumentToRead = PDDocument.load(pdfFile);
+
+            //Запись в консоль
+            String pdfText = pdfTextStripper.getText(pdfDocumentToRead);
+            System.out.println(pdfText);
+            pdfDocumentToRead.close();
+
+            //Сохранение в текстовый файл
+            FileOutputStream fileToSaveFromPDF = new FileOutputStream(txtFile);
+            DataOutputStream outStream = new DataOutputStream(new BufferedOutputStream(fileToSaveFromPDF));
+            outStream.writeUTF(pdfText);
+            outStream.close();
+
+        }
+        catch (IOException ioException)
+        {
+            System.out.println("Ошибка при чтении файла: "+ ioException);
+        }
+        catch (Exception exception)
+        {
+            System.out.println("При выполнении программы возникла неизвестная ошибка: "+ exception);
+        }
     }
 }
