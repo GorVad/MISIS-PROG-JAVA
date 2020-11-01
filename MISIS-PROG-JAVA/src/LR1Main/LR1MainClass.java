@@ -6,7 +6,7 @@ import org.apache.pdfbox.text.PDFTextStripper;
 
 public class LR1MainClass
 {
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args)
     {
         try
         {
