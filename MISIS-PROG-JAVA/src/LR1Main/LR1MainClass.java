@@ -10,8 +10,8 @@ public class LR1MainClass
     {
         try
         {
-            File pdfFile = new File("D:\\IntelliJ\\MISIS-PROG-JAVA\\ExternalFiles\\ExLR1\\LR1_PDFText.pdf");
-            File txtFile = new File("D:\\IntelliJ\\MISIS-PROG-JAVA\\ExternalFiles\\ExLR1\\LR1_TxtToWrite.txt");
+            File pdfFile = new File("src/LR1Main/LR1_PDFText.pdf");
+            File txtFile = new File("LR1Main/LR1_TxtToWrite.txt");
             PDFTextStripper pdfTextStripper = new PDFTextStripper();
 
             //Чтение файла
