@@ -11,16 +11,19 @@ public class LR3MainClass
     {
         try
         {
+            //Считывание введенной информации
             Scanner scanner = new Scanner(System.in);
             System.out.println("Укажите путь к папке/файлу:");
             String filePath = scanner.nextLine();
             System.out.println("Укажите путь к архиву:");
             String zipPath = scanner.nextLine();
 
+            //Создание потоков для работы
             FileOutputStream fileStream = new FileOutputStream(zipPath);
             ZipOutputStream zipStream = new ZipOutputStream(fileStream);
             archive(zipStream, new File(filePath), null);
 
+            //Закрытие потоков
             zipStream.flush();
             fileStream.flush();
             zipStream.close();
@@ -39,15 +42,18 @@ public class LR3MainClass
     }
     public static void archive(ZipOutputStream zipStream, File fileToArchive, String fileParentDir) throws Exception
     {
+        //Проверка на наличие файоа
         if (fileToArchive == null || !fileToArchive.exists()) return;
 
         String zipEntryName = fileToArchive.getName();
 
         if (fileParentDir!=null && !fileParentDir.isEmpty()) zipEntryName = fileParentDir + "/" + fileToArchive.getName();
 
+        //Запуск повторной дочерней записи вложенных файлов
         if (fileToArchive.isDirectory()) for (File file : fileToArchive.listFiles()) archive(zipStream, file, zipEntryName);
         else
             {
+                //Запись в архив
                 byte[] buffer = new byte[1024];
                 FileInputStream fis = new FileInputStream(fileToArchive);
                 zipStream.putNextEntry(new ZipEntry(zipEntryName));
