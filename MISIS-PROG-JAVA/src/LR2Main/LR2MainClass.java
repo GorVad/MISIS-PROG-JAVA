@@ -17,6 +17,7 @@ public class LR2MainClass
             {
                 //Считывание введенной информации
                 Scanner scanner = new Scanner(System.in);
+                System.out.println("Укажите путь к ini-файлу:");
                 String filePath = scanner.nextLine();
 
                 //Инициализация переменной для работы с Ini
