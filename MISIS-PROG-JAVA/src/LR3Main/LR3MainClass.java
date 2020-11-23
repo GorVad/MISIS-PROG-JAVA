@@ -5,9 +5,6 @@ import java.util.Scanner;
 import java.util.zip.*;
 import java.io.IOException;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 public class LR3MainClass
 {
     public static void main(String[] args) throws Exception
@@ -29,7 +26,8 @@ public class LR3MainClass
             zipStream.close();
             fileStream.close();
 
-            System.out.println("Данные успешно заархивированы");}
+            System.out.println("Данные успешно заархивированы");
+        }
         catch (IOException ioException)
         {
             System.out.println("Ошибка при чтении файла: "+ ioException);
