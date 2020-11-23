@@ -12,22 +12,32 @@ public class LR3MainClass
 {
     public static void main(String[] args) throws Exception
     {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Укажите путь к папке/файлу:");
-        String filePath = scanner.nextLine();
-        System.out.println("Укажите путь к архиву:");
-        String zipPath = scanner.nextLine();
+        try
+        {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Укажите путь к папке/файлу:");
+            String filePath = scanner.nextLine();
+            System.out.println("Укажите путь к архиву:");
+            String zipPath = scanner.nextLine();
 
-        FileOutputStream fileStream = new FileOutputStream(zipPath);
-        ZipOutputStream zipStream = new ZipOutputStream(fileStream);
-        archive(zipStream, new File(filePath), null);
+            FileOutputStream fileStream = new FileOutputStream(zipPath);
+            ZipOutputStream zipStream = new ZipOutputStream(fileStream);
+            archive(zipStream, new File(filePath), null);
 
-        zipStream.flush();
-        fileStream.flush();
-        zipStream.close();
-        fileStream.close();
+            zipStream.flush();
+            fileStream.flush();
+            zipStream.close();
+            fileStream.close();
 
-        System.out.println("Данные успешно заархивированы");
+            System.out.println("Данные успешно заархивированы");}
+        catch (IOException ioException)
+        {
+            System.out.println("Ошибка при чтении файла: "+ ioException);
+        }
+        catch (Exception exception)
+        {
+            System.out.println("При выполнении программы возникла неизвестная ошибка: "+ exception);
+        }
     }
     public static void archive(ZipOutputStream zipStream, File fileToArchive, String fileParentDir) throws Exception
     {
