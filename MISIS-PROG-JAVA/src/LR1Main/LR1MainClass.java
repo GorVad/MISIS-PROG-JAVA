@@ -27,7 +27,6 @@ public class LR1MainClass
             DataOutputStream outStream = new DataOutputStream(new BufferedOutputStream(fileToSaveFromPDF));
             outStream.writeUTF(pdfText);
             outStream.close();
-
         }
         catch (IOException ioException)
         {
