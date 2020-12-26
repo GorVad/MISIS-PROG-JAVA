@@ -12,20 +12,20 @@ public class FinalMainClass
 {
     public static void main(String[] args) throws IOException {
         //Обозначение путей к файлам для чтения/записи
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Введите путь к базе Телефон-ФИО (для чтения):");
-//        String telNamePath = scanner.nextLine();
-//        System.out.println("Введите путь к базе Телефон-Комментарий (для чтения):");
-//        String telCom = scanner.nextLine();
-//        System.out.println("Введите путь к базе Телефон-ФИО-Комментарий (для записи):");
-//        String telNameCom = scanner.nextLine();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите путь к базе Телефон-ФИО (для чтения):");
+        String telNamePath = scanner.nextLine();
+        System.out.println("Введите путь к базе Телефон-Комментарий (для чтения):");
+        String telComPath = scanner.nextLine();
+        System.out.println("Введите путь к базе Телефон-ФИО-Комментарий (для записи):");
+        String telNameComPath = scanner.nextLine();
 
         //Открытие потоков для работы с файлами
-        FileInputStream telcomFileStream = new FileInputStream("src/FINAL/tel-com.txt");
+        FileInputStream telcomFileStream = new FileInputStream(telComPath);
         BufferedReader telcomBufferedReader = new BufferedReader(new InputStreamReader(telcomFileStream));
-        FileInputStream telnameFileStream = new FileInputStream("src/FINAL/tel-name.txt");
+        FileInputStream telnameFileStream = new FileInputStream(telNamePath);
         BufferedReader telnameBufferedReader = new BufferedReader(new InputStreamReader(telnameFileStream));
-        FileOutputStream telnamecomFileStream = new FileOutputStream("src/FINAL/tel-name-com.txt");
+        FileOutputStream telnamecomFileStream = new FileOutputStream(telNameComPath);
         DataOutputStream telnamecomOutStream = new DataOutputStream(new BufferedOutputStream(telnamecomFileStream));
         PrintStream printStream = new PrintStream(telnamecomFileStream);
 
