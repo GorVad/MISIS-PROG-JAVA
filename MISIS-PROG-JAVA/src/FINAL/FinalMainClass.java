@@ -2,6 +2,7 @@ package FINAL;
 
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -26,6 +27,7 @@ public class FinalMainClass
         BufferedReader telnameBufferedReader = new BufferedReader(new InputStreamReader(telnameFileStream));
         FileOutputStream telnamecomFileStream = new FileOutputStream("src/FINAL/tel-name-com.txt");
         DataOutputStream telnamecomOutStream = new DataOutputStream(new BufferedOutputStream(telnamecomFileStream));
+        PrintStream printStream = new PrintStream(telnamecomFileStream);
 
         //Создание регулярного выражения для поиска телефона
         Pattern telephone = Pattern.compile(".+\\d");
@@ -48,14 +50,14 @@ public class FinalMainClass
         }
 
         //Поиск записей в списках с идентичными номерами и формирование итогового файла
-        telnamecomOutStream.writeUTF("Телефон - ФИО - Комментарий \n ----------------------------- \n");
+        printStream.println("Телефон - ФИО - Комментарий");
+        printStream.println("-----------------------------");
         for (String telname : telnameList)
         {
             for (String telcom : telcomList)
             {
                 if (telname.split(" - ")[0].equals(telcom.split(" - ")[0]))
-                    telnamecomOutStream.writeUTF((telname + " - " + telcom.split(" - ")[1]).trim() + "\n");
-
+                    printStream.println(telname + " - " + telcom.split(" - ")[1]);
             }
         }
 
